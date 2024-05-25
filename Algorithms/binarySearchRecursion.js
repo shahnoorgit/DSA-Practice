@@ -4,15 +4,13 @@ function bin(array, start, target, end) {
   }
 
   let midI = Math.floor((start + end) / 2);
-  let midValue = array[midI];
-  if (target == midValue) {
+
+  if (target == array[midI]) {
     return midI;
-  } else if (target < midValue) {
-    let newEnd = midI - 1;
-    return bin(array, start, target, newEnd);
-  } else if (target > midValue) {
-    let newStart = midI + 1;
-    return bin(array, newStart, target, end);
+  } else if (target < array[midI]) {
+    return bin(array, start, target, midI - 1);
+  } else if (target > array[midI]) {
+    return bin(array, midI + 1, target, end);
   }
   return -1;
 }
@@ -23,7 +21,7 @@ const array = [
   23, 24, 25, 26, 27,
 ];
 let end = array.length - 1;
-let target = 500;
+let target = 2;
 let start = 0;
 
 const res = bin(array, start, target, end);
